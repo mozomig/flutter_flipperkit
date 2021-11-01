@@ -3,7 +3,7 @@
 @implementation FlutterFlipperkitPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
-      methodChannelWithName:@"untitled2"
+      methodChannelWithName:@"flutter_flipperkit"
             binaryMessenger:[registrar messenger]];
   FlutterFlipperkitPlugin* instance = [[FlutterFlipperkitPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
