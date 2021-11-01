@@ -1,6 +1,7 @@
 #import "FlutterFlipperkitPlugin.h"
 
 @implementation FlutterFlipperkitPlugin
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"flutter_flipperkit"
