@@ -26,8 +26,7 @@ class FlipperHttpClient implements HttpClient {
   String? userAgent;
 
   @override
-  Future<HttpClientRequest> open(
-      String method, String host, int port, String path) {
+  Future<HttpClientRequest> open(String method, String host, int port, String path) {
     return withInterceptor(client!.open(method, host, port, path));
   }
 
@@ -102,8 +101,7 @@ class FlipperHttpClient implements HttpClient {
   }
 
   @override
-  void addCredentials(
-      Uri url, String realm, HttpClientCredentials credentials) {
+  void addCredentials(Uri url, String realm, HttpClientCredentials credentials) {
     client!.addCredentials(url, realm, credentials);
   }
 
@@ -113,20 +111,17 @@ class FlipperHttpClient implements HttpClient {
   }
 
   @override
-  set authenticateProxy(
-      Future<bool> f(String host, int port, String scheme, String? realm)?) {
+  set authenticateProxy(Future<bool> f(String host, int port, String scheme, String? realm)?) {
     client!.authenticateProxy = f;
   }
 
   @override
-  void addProxyCredentials(
-      String host, int port, String realm, HttpClientCredentials credentials) {
+  void addProxyCredentials(String host, int port, String realm, HttpClientCredentials credentials) {
     client!.addProxyCredentials(host, port, realm, credentials);
   }
 
   @override
-  set badCertificateCallback(
-      bool callback(X509Certificate cert, String host, int port)?) {
+  set badCertificateCallback(bool callback(X509Certificate cert, String host, int port)?) {
     client!.badCertificateCallback = callback;
   }
 
@@ -135,12 +130,16 @@ class FlipperHttpClient implements HttpClient {
     client!.close(force: force);
   }
 
-  Future<FlipperHttpClientRequest> withInterceptor(
-      Future<HttpClientRequest> future) async {
+  Future<FlipperHttpClientRequest> withInterceptor(Future<HttpClientRequest> future) async {
     HttpClientRequest request = await future;
 
-    FlipperHttpClientRequest requestWithInterceptor =
-        new FlipperHttpClientRequest(_uuid.v4(), request);
+    FlipperHttpClientRequest requestWithInterceptor = new FlipperHttpClientRequest(_uuid.v4(), request);
     return requestWithInterceptor;
   }
+
+  @override
+  set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String? proxyHost, int? proxyPort)? f) {}
+
+  @override
+  set keyLog(Function(String line)? callback) {}
 }
